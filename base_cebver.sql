@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `area` (
 
 -- Volcando datos para la tabla cicebv.area: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla cicebv.bitacora
-CREATE TABLE IF NOT EXISTS `bitacora` (
+-- Volcando estructura para tabla cicebv.bitacoras
+CREATE TABLE IF NOT EXISTS `bitacoras` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `fecha` datetime NOT NULL DEFAULT curdate(),
   `contenido` longtext DEFAULT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `bitacora` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla cicebv.bitacora: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cicebv.bitacoras: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla cicebv.bitacora_imagen
 CREATE TABLE IF NOT EXISTS `bitacora_imagen` (
@@ -80,8 +80,8 @@ CREATE TABLE IF NOT EXISTS `boletinbusqueda` (
 
 -- Volcando datos para la tabla cicebv.boletinbusqueda: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla cicebv.busqueda
-CREATE TABLE IF NOT EXISTS `busqueda` (
+-- Volcando estructura para tabla cicebv.busquedas
+CREATE TABLE IF NOT EXISTS `busquedas` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `categoria_id` bigint(20) DEFAULT NULL,
   `fase_id` bigint(20) DEFAULT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `busqueda` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla cicebv.busqueda: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cicebv.busquedas: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla cicebv.busqueda_grupo
 CREATE TABLE IF NOT EXISTS `busqueda_grupo` (
@@ -147,14 +147,14 @@ CREATE TABLE IF NOT EXISTS `catalogodeobjeto` (
 
 -- Volcando datos para la tabla cicebv.catalogodeobjeto: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla cicebv.categoria
-CREATE TABLE IF NOT EXISTS `categoria` (
+-- Volcando estructura para tabla cicebv.categorias
+CREATE TABLE IF NOT EXISTS `categorias` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla cicebv.categoria: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cicebv.categorias: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla cicebv.codigo_postal
 CREATE TABLE IF NOT EXISTS `codigo_postal` (
@@ -165,29 +165,6 @@ CREATE TABLE IF NOT EXISTS `codigo_postal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla cicebv.codigo_postal: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla cicebv.colectivo
-CREATE TABLE IF NOT EXISTS `colectivo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) NOT NULL,
-  `representante` varchar(100) NOT NULL,
-  `prioridad` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- Volcando datos para la tabla cicebv.colectivo: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla cicebv.colectivo_integrante
-CREATE TABLE IF NOT EXISTS `colectivo_integrante` (
-  `id` int(11) NOT NULL,
-  `razon` varchar(45) DEFAULT NULL,
-  `colectivo_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`colectivo_id`) USING BTREE,
-  KEY `fk_colectivo_integrantes_colectivo1_idx` (`colectivo_id`),
-  CONSTRAINT `fk_colectivo_integrantes_colectivo1` FOREIGN KEY (`colectivo_id`) REFERENCES `colectivo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci COMMENT='		\\n';
-
--- Volcando datos para la tabla cicebv.colectivo_integrante: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla cicebv.colonia
 CREATE TABLE IF NOT EXISTS `colonia` (
@@ -348,8 +325,8 @@ INSERT INTO `escolaridad` (`id`, `nivel`, `prioridad`) VALUES
 	(14, 'Maestría', NULL),
 	(15, 'Doctorado', NULL);
 
--- Volcando estructura para tabla cicebv.estadisticas
-CREATE TABLE IF NOT EXISTS `estadisticas` (
+-- Volcando estructura para tabla cicebv.estadistica
+CREATE TABLE IF NOT EXISTS `estadistica` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `contbusquedasconindicio` int(11) DEFAULT NULL,
   `contbusquedassinindicio` int(11) DEFAULT NULL,
@@ -393,7 +370,7 @@ CREATE TABLE IF NOT EXISTS `estadisticas` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla cicebv.estadisticas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cicebv.estadistica: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla cicebv.estados
 CREATE TABLE IF NOT EXISTS `estados` (
@@ -472,14 +449,14 @@ INSERT INTO `estado_civil` (`id`, `estado`, `prioridad`) VALUES
 	(8, 'Union Libre', NULL),
 	(9, 'Viuda', NULL);
 
--- Volcando estructura para tabla cicebv.etapa
-CREATE TABLE IF NOT EXISTS `etapa` (
+-- Volcando estructura para tabla cicebv.etapas
+CREATE TABLE IF NOT EXISTS `etapas` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla cicebv.etapa: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cicebv.etapas: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla cicebv.expediente
 CREATE TABLE IF NOT EXISTS `expediente` (
@@ -515,21 +492,10 @@ CREATE TABLE IF NOT EXISTS `expediente_boletin` (
 
 -- Volcando datos para la tabla cicebv.expediente_boletin: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla cicebv.fase
-CREATE TABLE IF NOT EXISTS `fase` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- Volcando datos para la tabla cicebv.fase: ~0 rows (aproximadamente)
-
 -- Volcando estructura para tabla cicebv.fases
 CREATE TABLE IF NOT EXISTS `fases` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -577,14 +543,14 @@ CREATE TABLE IF NOT EXISTS `fichadebusqueda` (
 
 -- Volcando datos para la tabla cicebv.fichadebusqueda: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla cicebv.funcion
-CREATE TABLE IF NOT EXISTS `funcion` (
+-- Volcando estructura para tabla cicebv.funciones
+CREATE TABLE IF NOT EXISTS `funciones` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla cicebv.funcion: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cicebv.funciones: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla cicebv.genero
 CREATE TABLE IF NOT EXISTS `genero` (
@@ -601,29 +567,13 @@ INSERT INTO `genero` (`id`, `valor`) VALUES
 	(4, 'Intersexual'),
 	(5, NULL);
 
--- Volcando estructura para tabla cicebv.grupo
-CREATE TABLE IF NOT EXISTS `grupo` (
+-- Volcando estructura para tabla cicebv.grupos
+CREATE TABLE IF NOT EXISTS `grupos` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `funcion_id` bigint(20) NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `representante` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- Volcando datos para la tabla cicebv.grupo: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla cicebv.grupos
-CREATE TABLE IF NOT EXISTS `grupos` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) DEFAULT NULL,
-  `representante` varchar(45) DEFAULT NULL,
-  `idfuncion` bigint(20) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `prioridad` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`,`idfuncion`) USING BTREE,
-  KEY `fk_grupos_funcions1_idx` (`idfuncion`) USING BTREE,
-  CONSTRAINT `fk_grupos_funcions1` FOREIGN KEY (`idfuncion`) REFERENCES `funcions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla cicebv.grupos: ~0 rows (aproximadamente)
@@ -641,8 +591,8 @@ INSERT INTO `identificacionoficial` (`id`, `identificacion`, `prioridad`) VALUES
 	(1, 'INE', 3),
 	(2, 'Pasaporte', 2);
 
--- Volcando estructura para tabla cicebv.imagen
-CREATE TABLE IF NOT EXISTS `imagen` (
+-- Volcando estructura para tabla cicebv.imagenes
+CREATE TABLE IF NOT EXISTS `imagenes` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
@@ -651,7 +601,7 @@ CREATE TABLE IF NOT EXISTS `imagen` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla cicebv.imagen: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cicebv.imagenes: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla cicebv.imagen_seccion
 CREATE TABLE IF NOT EXISTS `imagen_seccion` (
@@ -661,16 +611,6 @@ CREATE TABLE IF NOT EXISTS `imagen_seccion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla cicebv.imagen_seccion: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla cicebv.indicio
-CREATE TABLE IF NOT EXISTS `indicio` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `prioridad` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- Volcando datos para la tabla cicebv.indicio: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla cicebv.instrumentoentrevista
 CREATE TABLE IF NOT EXISTS `instrumentoentrevista` (
@@ -790,20 +730,6 @@ INSERT INTO `metodocaptura` (`id`, `metodonom`, `prioridad`) VALUES
 	(14, 'Secuestro', NULL),
 	(15, 'Sin información', NULL),
 	(16, 'Otro', NULL);
-
--- Volcando estructura para tabla cicebv.metodologia
-CREATE TABLE IF NOT EXISTS `metodologia` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `busqueda_id` int(11) DEFAULT NULL,
-  `contenido` text DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_busquedametodo_idx` (`busqueda_id`),
-  CONSTRAINT `fk_busqueda_metodolog` FOREIGN KEY (`busqueda_id`) REFERENCES `busquedas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- Volcando datos para la tabla cicebv.metodologia: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla cicebv.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
@@ -1320,8 +1246,8 @@ CREATE TABLE IF NOT EXISTS `reportante_telefono` (
 
 -- Volcando datos para la tabla cicebv.reportante_telefono: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla cicebv.seccion
-CREATE TABLE IF NOT EXISTS `seccion` (
+-- Volcando estructura para tabla cicebv.secciones
+CREATE TABLE IF NOT EXISTS `secciones` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `busqueda_id` bigint(20) NOT NULL,
   `etapa_id` bigint(20) DEFAULT NULL,
@@ -1329,7 +1255,7 @@ CREATE TABLE IF NOT EXISTS `seccion` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla cicebv.seccion: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cicebv.secciones: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla cicebv.senasparticular
 CREATE TABLE IF NOT EXISTS `senasparticular` (
@@ -1415,15 +1341,6 @@ CREATE TABLE IF NOT EXISTS `tipodeintrumetoentrevista` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla cicebv.tipodeintrumetoentrevista: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla cicebv.tipodeobjeto
-CREATE TABLE IF NOT EXISTS `tipodeobjeto` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- Volcando datos para la tabla cicebv.tipodeobjeto: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla cicebv.tipodereporte
 CREATE TABLE IF NOT EXISTS `tipodereporte` (
@@ -1527,16 +1444,16 @@ CREATE TABLE IF NOT EXISTS `vistasena` (
 
 -- Volcando datos para la tabla cicebv.vistasena: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla cicebv.zonas
-CREATE TABLE IF NOT EXISTS `zonas` (
+-- Volcando estructura para tabla cicebv.zona
+CREATE TABLE IF NOT EXISTS `zona` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `abreviacion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla cicebv.zonas: ~2 rows (aproximadamente)
-INSERT INTO `zonas` (`id`, `nombre`, `abreviacion`) VALUES
+-- Volcando datos para la tabla cicebv.zona: ~2 rows (aproximadamente)
+INSERT INTO `zona` (`id`, `nombre`, `abreviacion`) VALUES
 	(1, 'Zona Norte', 'ZN'),
 	(2, 'Zona Centro', 'ZC'),
 	(3, 'Zona Sur', 'ZS');
